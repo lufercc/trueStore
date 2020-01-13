@@ -70,7 +70,7 @@ public class StepsDefinition {
 
     @And("I expect {string} is no longer displayed in the summary table")
     public void iExpectIsNoLongerDisplayedInTheSummaryTable(String itemName) {
-        assertEquals(shoppingCart.itemIsDisplayed(itemName), true);
+        assertEquals(shoppingCart.itemIsDisplayed(itemName), false);
     }
 
     @And("I expect the total amount to pay is {string}")

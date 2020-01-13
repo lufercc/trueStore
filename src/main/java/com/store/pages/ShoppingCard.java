@@ -3,6 +3,8 @@ package com.store.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ShoppingCard extends AbstractPage {
 
@@ -26,6 +28,7 @@ public class ShoppingCard extends AbstractPage {
     public void deleteItem( String itemName) {
         String locator = String.format(ITEM_DELETE, itemName);
         action.click(By.xpath(locator));
+        new WebDriverWait(driver, 10).until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locator)));
     }
 
     public String totalPrice(){
