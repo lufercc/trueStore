@@ -57,22 +57,24 @@ public class StepsDefinition {
     }
 
     @Then("I expect {string} is displayed in summary table and the availability is {string}")
-    public void iExpectPrintedChiffonDressIsDisplayedInSummaryTableAndTheAvailabilityIsInStock(String itemName, String availavilityStatus) {
+    public void iExpectItemIsDisplayedInSummaryTableAndTheAvailabilityIsStatus(String itemName, String availavilityStatus) {
         assertEquals(true, shoppingCart.itemIsDisplayed(itemName));
         String status = shoppingCart.getAvailabilityStatus(itemName);
         assertEquals(availavilityStatus, status);
     }
 
     @And("I remove {string} from the summary table")
-    public void iRemoveBlouseFromTheSummaryTable() {
+    public void iRemoveItemFromTheSummaryTable(String itemName) {
+        shoppingCart.deleteItem(itemName);
     }
 
     @And("I expect {string} is no longer displayed in the summary table")
-    public void iExpectIsNoLongerDisplayedInTheSummaryTable(String arg0) {
-        
+    public void iExpectIsNoLongerDisplayedInTheSummaryTable(String itemName) {
+        assertEquals(shoppingCart.itemIsDisplayed(itemName), true);
     }
 
     @And("I expect the total amount to pay is {string}")
-    public void iExpectTheTotalAmountToPayIs(String arg0) {
+    public void iExpectTheTotalAmountToPayIs(String priceExpectedd) {
+        assertEquals(shoppingCart.totalPrice(), priceExpectedd);
     }
 }

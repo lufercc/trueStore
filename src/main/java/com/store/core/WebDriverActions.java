@@ -35,6 +35,11 @@ public class WebDriverActions {
         return driver.findElement(selector).getText();
     }
 
+    public String getText(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+        return element.getText();
+    }
+
     public void hover(By selector) {
         WebElement target = driver.findElement(selector);
         wait.until(ExpectedConditions.visibilityOf(target));
@@ -49,7 +54,7 @@ public class WebDriverActions {
     public boolean isDisplayed(By element) {
         try {
             driver.findElement(element);
-        } catch (final NoSuchElementException e) {
+        } catch (Exception e) {
             return false;
         }
         return true;
