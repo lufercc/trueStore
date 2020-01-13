@@ -1,6 +1,7 @@
 package com.store.core;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -38,5 +39,19 @@ public class WebDriverActions {
         WebElement target = driver.findElement(selector);
         wait.until(ExpectedConditions.visibilityOf(target));
         actions.moveToElement(target).build().perform();
+    }
+
+    public void hover(WebElement webElement) {
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+        actions.moveToElement(webElement).build().perform();
+    }
+
+    public boolean isDisplayed(By element) {
+        try {
+            driver.findElement(element);
+        } catch (final NoSuchElementException e) {
+            return false;
+        }
+        return true;
     }
 }

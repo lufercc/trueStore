@@ -12,7 +12,7 @@ Feature: Dress verification
     And I click on "Continue shopping" button
     And I hover "Blouse" then add to the card
     And I click on "Continue shopping" button
-    And I go to the Cart dropdown and select "Checkout"
+    And I go to the Cart dropdown and select "Check Out"
     Then I expect "Printed Chiffon Dress" is displayed in summary table and the availability is "In stock"
     And I expect "Blouse" is displayed in summary table and the availability is "In stock"
     And I remove "Blouse" from the summary table

@@ -1,6 +1,7 @@
 package com.store.steps;
 
 import com.store.pages.BottomMenu;
+import com.store.pages.ShoppingCard;
 import com.store.pages.Singin;
 import com.store.pages.StorePage;
 import cucumber.api.java.en.And;
@@ -13,11 +14,13 @@ public class StepsDefinition {
     private Singin singin;
     private BottomMenu bottomMenu;
     private StorePage store;
+    private ShoppingCard shoppingCart;
 
-    public StepsDefinition(Singin singin, BottomMenu bottomMenu, StorePage store) {
+    public StepsDefinition(Singin singin, BottomMenu bottomMenu, StorePage store, ShoppingCard shoppingCart) {
         this.singin = singin;
         this.bottomMenu = bottomMenu;
         this.store = store;
+        this.shoppingCart = shoppingCart;
     }
 
     @Given("Open Automation Practice page")
@@ -48,13 +51,16 @@ public class StepsDefinition {
     }
 
     @And("I go to the Cart dropdown and select {string}")
-    public void iGoToTheCartDropdownAndSelectCheckout() {
-
+    public void iGoToTheCartDropdownAndSelectCheckout(String buttonInShopping) {
+        store.viewShoppingCard();
+        store.clickOn(buttonInShopping);
     }
 
     @Then("I expect {string} is displayed in summary table and the availability is {string}")
-    public void iExpectPrintedChiffonDressIsDisplayedInSummaryTableAndTheAvailabilityIsInStock() {
-
+    public void iExpectPrintedChiffonDressIsDisplayedInSummaryTableAndTheAvailabilityIsInStock(String itemName, String availavilityStatus) {
+        assertEquals(true, shoppingCart.itemIsDisplayed(itemName));
+        String status = shoppingCart.getAvailabilityStatus(itemName);
+        assertEquals(availavilityStatus, status);
     }
 
     @And("I remove {string} from the summary table")

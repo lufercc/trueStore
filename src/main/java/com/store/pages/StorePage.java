@@ -11,6 +11,13 @@ public class StorePage extends AbstractPage{
     @FindBy(css = "[title='Continue shopping']")
     private WebElement continueShoppingButton;
 
+    @FindBy(css = "[title=\"View my shopping cart\"]")
+    private WebElement viewShopingCard;
+
+    @FindBy(css = "#button_order_cart")
+    private WebElement checkoutButton;
+
+
     private HashMap<String, WebElement> buttons = new HashMap<>();
 
     public static final String PERCENTAGE_REDUCTION = "//a[@title='%s']/ancestor::h5/following-sibling::div[@class='content_price']/child::span[@class='price-percent-reduction']";
@@ -18,7 +25,8 @@ public class StorePage extends AbstractPage{
     public static final String ADD_TO_CARD = "//a[@title='%s']/ancestor::h5/following-sibling::div[@class='button-container']/child::a[@title='Add to cart']";
 
     public StorePage() {
-         buttons.put("Continue shopping", continueShoppingButton);
+        buttons.put("Continue shopping", continueShoppingButton);
+        buttons.put("Check Out", checkoutButton);
     }
 
     public String getPercentageReduction(String dressName){
@@ -32,5 +40,9 @@ public class StorePage extends AbstractPage{
 
     public void clickOn(String buttonName) {
         action.click(buttons.get(buttonName));
+    }
+
+    public void viewShoppingCard() {
+        action.hover(viewShopingCard);
     }
 }
