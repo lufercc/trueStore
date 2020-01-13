@@ -16,6 +16,6 @@ public class BottomMenu extends AbstractPage {
     }
 
     public void goLink(String linkName){
-        actions.click(menuElements.get(linkName));
+        action.click(menuElements.get(linkName));
     }
 }
