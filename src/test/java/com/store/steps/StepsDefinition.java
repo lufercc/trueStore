@@ -32,6 +32,6 @@ public class StepsDefinition {
     @Then("I expect the {string} has {string} as discount")
     public void iExpectTheHasAsDiscount(String itemName, String percentageExpect) {
         String percentageReduction = store.getPercentageReduction(itemName);
-        assertEquals(percentageExpect, percentageReduction);
+        assertEquals(percentageReduction, percentageExpect);
     }
 }
